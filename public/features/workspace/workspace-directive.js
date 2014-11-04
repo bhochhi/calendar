@@ -2,16 +2,10 @@
  * Created by rbhochhibhoya on 10/24/2014.
  */
 
-angular.module('calender')
+calenderApp
     .directive('workspace', [function () {
         return {
-            restrict: 'E',
-            replace: true,
-            //scope: {
-            //    id: '@',
-            //    value: '=?',
-            //    receivers: '=?'
-            //},
+            restrict: 'EA',
             templateUrl: 'workspace/workspace-partial.html',
             controller: 'workspaceCtrl',
             link: function link($scope, $element, $attrs) {
