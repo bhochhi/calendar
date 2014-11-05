@@ -30,5 +30,8 @@
   },
   "browser": {
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1"
   }
 }

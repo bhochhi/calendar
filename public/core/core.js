@@ -7,3 +7,4 @@ $ = jQuery = require('jQuery');
 require('angular');
 require('ui-router');
 require('bootstrap');
+ _ = require('lodash');

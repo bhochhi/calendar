@@ -35,6 +35,7 @@ function clean() {
 
 function html() {
     gulp.src(['./public/index.html', './public/features/**/*.html'])
+        .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest(options.buildFolder));
 }
 
@@ -49,7 +50,7 @@ function styleCore() {
 }
 
 function styleCommon() {
-    gulp.src(['./styles/**/*.css'])
+    gulp.src(['./public/common/styles/**/*.css'])
         .pipe(concat(options.commoncss))
         .pipe(cssMinify())
         .pipe(gulp.dest(options.buildFolder));
@@ -69,10 +70,7 @@ function scriptCore() {
     gulp.src('./public/core/core.js')
         .pipe(browserify({
             insertGlobals: true,
-            debug: false,
-            depends: {
-                jquery: 'jquery'
-            }
+            debug: false
         }))
         .pipe(concat(options.libjs))
         .pipe(gulp.dest(options.buildFolder));
