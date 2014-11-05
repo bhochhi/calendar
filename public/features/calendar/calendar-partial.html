@@ -1,0 +1,13 @@
+<header class="row">
+    <div class="col-sm-2">
+            <label for="month-input">Month:</label>
+            <select id="month-input" ng-model="selectedMonth" ng-options="month.name for month in months"
+                    data-value="month.id"></select>
+
+    </div>
+    <div class="col-sm-2">
+        <label for="year-input">Year:</label>
+        <select id="year-input" ng-model="selectedYear" ng-options="year for year in years"
+                data-value="year"></select>
+    </div>
+</header>
