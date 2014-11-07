@@ -50,7 +50,7 @@ function styleCore() {
 }
 
 function styleCommon() {
-    gulp.src(['./public/common/styles/**/*.css'])
+    gulp.src(['./public/common/styles/normalize.css','./public/common/styles/main.css'])
         .pipe(concat(options.commoncss))
         .pipe(cssMinify())
         .pipe(gulp.dest(options.buildFolder));

@@ -1,13 +1,24 @@
-<header class="row">
-    <div class="col-sm-2">
-            <label for="month-input">Month:</label>
-            <select id="month-input" ng-model="selectedMonth" ng-options="month.name for month in months"
-                    data-value="month.id"></select>
+<nav class="row navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 navbar-text">
+                <label for="month-input">Month:</label>
+                <select id="month-input" ng-model="selectedMonth" ng-options="month.name for month in months"
+                        data-value="month.id"></select>
 
+
+            </div>
+            <div class="col-lg-8 navbar-text">
+                <label for="year-input">Year:</label>
+                <select id="year-input" ng-model="selectedYear" ng-options="year for year in years"
+                        data-value="year"></select>
+
+            </div>
+        </div>
     </div>
-    <div class="col-sm-2">
-        <label for="year-input">Year:</label>
-        <select id="year-input" ng-model="selectedYear" ng-options="year for year in years"
-                data-value="year"></select>
+</nav>
+<div class="calendar-body">
+    <div class="row" data-ng-repeat="i in [1,2,3,4,5]">
+            <div data-ng-repeat="day in days" class="col-lg-1 width-auto day-block"> {{day.name}}</div>
     </div>
-</header>
+</div>
