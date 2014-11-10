@@ -2,7 +2,6 @@ var calenderApp = angular.module('calenderApp', ['ui.router']);
 
 
 function defaultStateProvider($stateProvider, $urlRouterProvider) {
-    console.log('ojkljkljkljkl run');
     var calenderState = {
         url: '/',
         template: '<workspace></workspace>',
@@ -20,7 +19,6 @@ calenderApp.config([
     '$urlRouterProvider',
     defaultStateProvider])
     .run(['$rootScope', function run() {
-        console.log('run run');
     }]);
 
 window.calenderApp = calenderApp;

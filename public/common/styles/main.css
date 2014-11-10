@@ -1,12 +1,18 @@
-body{
+body {
     margin: 15px;
 }
 
-.calendar-body{
-    margin-top:40px;
+.calendar-body {
+    margin-top: 40px;
 }
 
-.day-block{
-          border: 1px solid #cccccc;
-            
+.week-block {
+    margin: auto 0;
+}
+
+.day-block {
+    border: 1px solid #cccccc;
+    height: 100px;
+    width: 14%;
+
 }

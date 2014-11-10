@@ -6,7 +6,7 @@ calenderApp
     .directive('calendar', [function () {
         return {
             restrict: 'E',
-            templateUrl: 'Calendar/calendar-partial.html',
+            templateUrl: 'calendar/calendar-partial.html',
             controller: 'calendarCtrl',
             link: function link($scope, $element, $attrs) {
 

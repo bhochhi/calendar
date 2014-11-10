@@ -9,7 +9,6 @@ calenderApp
             templateUrl: 'workspace/workspace-partial.html',
             controller: 'workspaceCtrl',
             link: function link($scope, $element, $attrs) {
-                console.log("We come here");
             }
         }
     }]);
