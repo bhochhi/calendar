@@ -44,43 +44,76 @@ calenderApp
         }
         $scope.dates = [];
         $scope.$watchGroup(['selectedYear', 'selectedMonth'], function (newValues) {
-        $scope.dates = [];
-        idx = 0;
-        var year = $scope.selectedYear;// newValues[0];
-        var month = $scope.selectedMonth;// newValues[1];
-        console.log(year, month);
-        var curLastDate = (new Date(year, $scope.selectedMonth.number + 1, 0)).getDate();
-        var firstDayOfSelectedMonth = _.find($scope.days, {number: (new Date(year, month.number, 1)).getDay()});
-        var lastDayOfSelectedMonth = _.find($scope.days, {number: (new Date(year, month.number + 1, 0)).getDay()});
+            $scope.dates = [];
+            var year = $scope.selectedYear;// newValues[0];
+            var month = $scope.selectedMonth;// newValues[1];
+            console.log(year, month);
+            var curLastDate = (new Date(year, $scope.selectedMonth.number + 1, 0)).getDate();
+            var firstDayOfSelectedMonth = _.find($scope.days, {number: (new Date(year, month.number, 1)).getDay()});
+            var lastDayOfSelectedMonth = _.find($scope.days, {number: (new Date(year, month.number + 1, 0)).getDay()});
 
-        if (firstDayOfSelectedMonth && firstDayOfSelectedMonth.number != 0) {
-            var needsToFill1 = firstDayOfSelectedMonth.number;
-            var preMonthLastDate = (new Date(year, month.number, 0)).getDate();
-            var preStartDate = preMonthLastDate - needsToFill1 + 1;
-            for (var preDate = preStartDate; preDate <= preMonthLastDate; preDate++) {
-                $scope.dates.push(preDate);
+            if (firstDayOfSelectedMonth && firstDayOfSelectedMonth.number != 0) {
+                var needsToFill1 = firstDayOfSelectedMonth.number;
+                var preMonthLastDate = (new Date(year, month.number, 0)).getDate();
+                var preStartDate = preMonthLastDate - needsToFill1 + 1;
+                for (var preDate = preStartDate; preDate <= preMonthLastDate; preDate++) {
+                    var previousMonthDate = new Date(year, month.number - 1, preDate);
+                    var day = previousMonthDate.getDay();
+                    $scope.dates.push({
+                        date: preDate,
+                        year: previousMonthDate.getFullYear(),
+                        month: previousMonthDate.getMonth(),
+                        day: day,
+                        weekends: day == 0 || day == 6,
+                        state:'previous'
+                    });
+                }
+
             }
 
-        }
-
-        for (var curDate = 1; curDate <= curLastDate; curDate++) {
-            $scope.dates.push(curDate)
-        }
-
-        if (lastDayOfSelectedMonth && lastDayOfSelectedMonth.number != 6) {
-            var needsToFill = 7 - (lastDayOfSelectedMonth.number + 1);
-            for (var nextDate = 1; nextDate <= needsToFill; nextDate++) {
-                $scope.dates.push(nextDate);
+            for (var curDate = 1; curDate <= curLastDate; curDate++) {
+                var curMonthDate = new Date(year, month.number, curDate);
+                var day = curMonthDate.getDay();
+                $scope.dates.push({
+                    date: curDate,
+                    year: curMonthDate.getFullYear(),
+                    month: curMonthDate.getMonth(),
+                    day: day,
+                    weekends: day == 0 || day == 6,
+                    state:'current'
+                });
             }
+
+            if (lastDayOfSelectedMonth && lastDayOfSelectedMonth.number != 6) {
+                var needsToFill = 7 - (lastDayOfSelectedMonth.number + 1);
+                for (var nextDate = 1; nextDate <= needsToFill; nextDate++) {
+                    var nextMonthDate = new Date(year, month.number + 1, nextDate);
+                    var day = nextMonthDate.getDay();
+                    $scope.dates.push({
+                        date: nextDate,
+                        year: nextMonthDate.getFullYear(),
+                        month: nextMonthDate.getMonth(),
+                        day: day,
+                        weekends: day == 0 || day == 6,
+                        state:'next'
+                    });
+                }
+            }
+            $scope.dates = formatDate($scope.dates);
+            console.log("dates", $scope.dates);
+        }, true);
+
+        function formatDate(dates) {
+            var formattedDates = [];
+            var week = [];
+            for (var i = 0; i < dates.length; i++) {
+                if (week.length > 6) {
+                    formattedDates.push(week);
+                    week = [];
+                }
+                week.push(dates[i]);
+            }
+            formattedDates.push(week);
+            return formattedDates;
         }
-            console.log("dates",$scope.dates);
-        },true);
-
-
-        $scope.getDate = function () {
-            console.log('idx', idx);
-            if(idx>42) idx=0;
-            return $scope.dates[idx++];
-        }
-
     }]);

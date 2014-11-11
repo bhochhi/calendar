@@ -18,20 +18,9 @@
     </div>
 </nav>
 <div class="calendar-body">
-    <!--<div class="row week-block" data-ng-repeat="row in [0,1,2,3,4,5]">-->
-            <!--<div data-ng-repeat="day in days" class="col-lg-1 day-block">-->
-             <!--{{day.name}}{{dates[(row+1)*day.number]}}-->
-            <!--</div>-->
-    <!--</div>-->
-<div class="row week-block" data-ng-repeat="jdx in [0,1,2,3,4,5]">
-            <div data-ng-repeat="  idx in [jdx*7,jdx*7+1,jdx*7+2,jdx*7+3,jdx*7+4,jdx*7+5,jdx*7+6]" class="col-lg-1 day-block">
-             {{day.name}}{{dates[idx]}}
-            </div>
+    <div class="row week-block" data-ng-repeat="week in dates track by $index">
+        <div class="col-lg-1 day-block" data-ng-repeat="date in week track by $index" date-block value="{{date}}" ng-class="{weekends:date.weekends}">
+
+        </div>
     </div>
-
-
-
-
-
-
 </div>

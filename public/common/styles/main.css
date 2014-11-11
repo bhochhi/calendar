@@ -14,5 +14,13 @@ body {
     border: 1px solid #cccccc;
     height: 100px;
     width: 14%;
+    margin-left: auto;
+    margin-right: auto
+}
 
+div.active{
+    background-color: #d58512;
+}
+.weekends{
+    background-color: #999999;
 }
